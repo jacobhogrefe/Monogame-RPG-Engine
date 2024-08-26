@@ -74,3 +74,6 @@ obj/
 todo.txt
 .config/
 pipeline-references/
+
+# temporary
+*.sh
