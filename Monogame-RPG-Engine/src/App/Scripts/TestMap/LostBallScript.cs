@@ -12,17 +12,16 @@ namespace App.Scripts
     {
         public override List<ScriptAction> LoadScriptActions()
         {
-            List<ScriptAction> scriptActions = new List<ScriptAction>();
-            scriptActions.Add(new LockPlayerScriptAction());
-            scriptActions.Add(new TextboxScriptAction()
-                .AddText("Where did my ball go!?")
-                .AddText("I left it right here before I took my 22 hour cat nap.")
-                .AddText("Maybe Walrus has seen it.")
-            );
-
-            scriptActions.Add(new ChangeFlagScriptAction("hasLostBall", true));
-            scriptActions.Add(new UnlockPlayerScriptAction());
-            return scriptActions;
+            return new List<ScriptAction>
+            {
+                new LockPlayerScriptAction(),
+                new TextboxScriptAction(new string [] {
+                    "Where did my ball go!?",
+                    "I left it right here before I took my 22 hour cat nap.",
+                    "Maybe Walrus has seen it."}),
+                new ChangeFlagScriptAction("hasLostBall", true),
+                new UnlockPlayerScriptAction()
+            };
         }
     }
 }
