@@ -51,16 +51,15 @@ namespace App.Tilesets
 
       mapTiles.Add(grassfloorTile2);
 
-      // Tree stem base 1 
-      Frame treestem1Frame = new FrameBuilder(GetSubImage(0, 3))
+      // pumpkin decoration
+      Frame pumpkinFrame = new FrameBuilder(GetSubImage(0, 3))
               .WithScale(TileScale)
               .Build();
 
-      MapTileBuilder treestem1Tile = new MapTileBuilder(treestem1Frame)
-              .WithTopLayer(treestem1Frame)
+      MapTileBuilder pumpkinTile = new MapTileBuilder(pumpkinFrame)
           .WithTileType(TileType.NOT_PASSABLE);
 
-      mapTiles.Add(treestem1Tile);
+      mapTiles.Add(pumpkinTile);
 
       // Castle plain
       Frame CastleplainFrame = new FrameBuilder(GetSubImage(0, 4))
@@ -226,7 +225,6 @@ namespace App.Tilesets
       .Build();
 
       MapTileBuilder Castle1Tile = new MapTileBuilder(Castle1Frame)
-          .WithTopLayer(Castle1Frame)
           .WithTileType(TileType.NOT_PASSABLE);
 
       mapTiles.Add(Castle1Tile);

@@ -502,17 +502,17 @@ namespace App.Tilesets
 
       //lighting bugs
       Frame[] bugJarFrames = new Frame[] {
-                new FrameBuilder(GetSubImage(5, 5), 500)
+                new FrameBuilder(GetSubImage(5, 5), 30)
                     .WithScale(TileScale)
                     .Build(),
-                new FrameBuilder(GetSubImage(6, 5), 500)
+                new FrameBuilder(GetSubImage(6, 5), 30)
                         .WithScale(TileScale)
                         .Build()
         };
 
       MapTileBuilder bugJarTile = new MapTileBuilder(floorFrame)
           .WithTopLayer(bugJarFrames)
-              .WithTileType(TileType.PASSABLE);
+              .WithTileType(TileType.NOT_PASSABLE);
 
       mapTiles.Add(bugJarTile);
 
@@ -576,13 +576,13 @@ namespace App.Tilesets
 
       //dancing mushrooms
       Frame[] danceFrame = new Frame[] {
-                new FrameBuilder(GetSubImage(3, 6), 500)
+                new FrameBuilder(GetSubImage(3, 6), 35)
                     .WithScale(TileScale)
                     .Build(),
-                new FrameBuilder(GetSubImage(4, 6), 500)
+                new FrameBuilder(GetSubImage(4, 6), 35)
                         .WithScale(TileScale)
                         .Build(),
-                new FrameBuilder(GetSubImage(0, 7), 500)
+                new FrameBuilder(GetSubImage(0, 7), 35)
                         .WithScale(TileScale)
                         .Build()
         };
