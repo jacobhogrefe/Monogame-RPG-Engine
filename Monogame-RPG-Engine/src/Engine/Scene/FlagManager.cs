@@ -18,6 +18,22 @@ namespace Engine.Scene
             flags.Add(flagName, startingValue);
         }
 
+        public void AddFlags(string[] flags)
+        {
+            foreach (string flag in flags)
+            {
+                AddFlag(flag);
+            }
+        }
+
+        public void AddFlags(Dictionary<string, bool> flags)
+        {
+            foreach (KeyValuePair<string, bool> kvp in flags)
+            {
+                AddFlag(kvp.Key, kvp.Value);
+            }
+        }
+
         public void SetFlag(string flagName)
         {
             if (flags.ContainsKey(flagName))
@@ -52,5 +68,3 @@ namespace Engine.Scene
         }
     }
 }
-
-

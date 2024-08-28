@@ -1,16 +1,15 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Text;
 using Engine.Core;
 using Engine.Entity;
 using Engine.Extensions;
 using Engine.Utils;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
 
 /*
     This class is for defining a map that is used for a specific level
@@ -62,44 +61,33 @@ namespace Engine.Scene
 
         // lists to hold map entities that are a part of the map
         public List<EnhancedMapTile> EnhancedMapTiles { get; private set; }
+        public Dictionary<string, bool> Flags { get; set; }
         public List<NPC> NPCs { get; private set; }
         public List<Trigger> Triggers { get; private set; }
 
         // returns all active enhanced map tiles (enhanced map tiles that are a part of the current update cycle) -- this changes every frame by the Camera class
         public List<EnhancedMapTile> ActiveEnhancedMapTiles
         {
-            get
-            {
-                return Camera.ActiveEnhancedMapTiles;
-            }
+            get { return Camera.ActiveEnhancedMapTiles; }
         }
 
         // returns all active npcs (npcs that are a part of the current update cycle) -- this changes every frame by the Camera class
         public List<NPC> ActiveNPCs
         {
-            get
-            {
-                return Camera.ActiveNPCs;
-            }
+            get { return Camera.ActiveNPCs; }
         }
 
         // returns all active triggers (triggers that are a part of the current update cycle) -- this changes every frame by the Camera class
         public List<Trigger> ActiveTriggers
         {
-            get
-            {
-                return Camera.ActiveTriggers;
-            }
+            get { return Camera.ActiveTriggers; }
         }
 
         // current script that is being executed (if any)
         private Script activeScript;
         public Script ActiveScript
         {
-            get
-            {
-                return activeScript;
-            }
+            get { return activeScript; }
             set
             {
                 activeScript = value;
@@ -108,7 +96,6 @@ namespace Engine.Scene
                 // otherwise, set script to active, which will begin its execution
                 if (value != null)
                 {
-
                     // if the script was not previously preloaded (preloadScripts method) beforehand, this will load the script dynamically
                     // preloading is recommended, but both are supported
                     if (value.ScriptActions == null)
@@ -139,18 +126,12 @@ namespace Engine.Scene
 
         public int WidthPixels
         {
-            get
-            {
-                return Width * Tileset.SpriteWidthScaled;
-            }
+            get { return Width * Tileset.SpriteWidthScaled; }
         }
 
         public int HeightPixels
         {
-            get
-            {
-                return Height * Tileset.SpriteHeightScaled;
-            }
+            get { return Height * Tileset.SpriteHeightScaled; }
         }
 
         // instance of content loader to allow maps to load their own content
@@ -171,6 +152,18 @@ namespace Engine.Scene
             PlayerStartTile = new Point(0, 0);
         }
 
+        public Map(
+            string mapFileName,
+            Tileset tileset,
+            ContentLoader contentLoader,
+            FlagManager flagManager
+        )
+            : this(mapFileName, tileset, contentLoader)
+        {
+            FlagManager = flagManager;
+            SetupMap();
+        }
+
         // sets up map by reading in the map file to create the tile map
         // loads in enemies, enhanced map tiles, and npcs
         // and instantiates a Camera
@@ -180,11 +173,16 @@ namespace Engine.Scene
 
             LoadMapFile();
 
-
             EnhancedMapTiles = LoadEnhancedMapTiles();
             foreach (EnhancedMapTile enhancedMapTile in EnhancedMapTiles)
             {
                 enhancedMapTile.SetMap(this);
+            }
+
+            if (FlagManager != null)
+            {
+                Flags = LoadFlags();
+                FlagManager.AddFlags(Flags);
             }
 
             NPCs = LoadNPCs();
@@ -218,7 +216,12 @@ namespace Engine.Scene
             catch (FileNotFoundException)
             {
                 // if map file does not exist, create a new one for this map (the map editor uses this)
-                Debug.WriteLine("Map file " + Config.MAP_FILES_PATH + MapFileName + " not found! Creating empty map file...");
+                Debug.WriteLine(
+                    "Map file "
+                        + Config.MAP_FILES_PATH
+                        + MapFileName
+                        + " not found! Creating empty map file..."
+                );
 
                 try
                 {
@@ -242,7 +245,8 @@ namespace Engine.Scene
             MapTiles = new MapTile[Height * Width];
 
             // read in all tile indexes in map file into an array
-            int[] tileIndexes = fileInput.ReadToEnd()
+            int[] tileIndexes = fileInput
+                .ReadToEnd()
                 .Split(new string[] { " ", "\n" }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(tileIndexStr => Convert.ToInt32(tileIndexStr))
                 .ToArray();
@@ -359,6 +363,12 @@ namespace Engine.Scene
             return new List<EnhancedMapTile>();
         }
 
+        // list of flags tied to the map, should be overridden in a subclass
+        protected virtual Dictionary<string, bool> LoadFlags()
+        {
+            return new Dictionary<string, bool>();
+        }
+
         // list of npcs defined to be a part of the map, should be overridden in a subclass
         protected virtual List<NPC> LoadNPCs()
         {
@@ -448,13 +458,15 @@ namespace Engine.Scene
             return null;
         }
 
-
         public List<MapEntity> GetSurroundingMapEntities(Player player)
         {
             List<MapEntity> surroundingMapEntities = new List<MapEntity>();
 
             // gets surrounding tiles
-            Point playerCurrentTile = GetTileIndexByPosition((int)player.Bounds.X1, (int)player.Bounds.Y1);
+            Point playerCurrentTile = GetTileIndexByPosition(
+                (int)player.Bounds.X1,
+                (int)player.Bounds.Y1
+            );
             for (int i = (int)playerCurrentTile.Y - 1; i <= playerCurrentTile.Y + 1; i++)
             {
                 for (int j = (int)playerCurrentTile.X - 1; j <= playerCurrentTile.X + 1; j++)
@@ -478,7 +490,10 @@ namespace Engine.Scene
             List<MapEntity> playerTouchingMapEntities = new List<MapEntity>();
             foreach (MapEntity mapEntity in surroundingMapEntities)
             {
-                if (mapEntity.InteractScript != null && mapEntity.Intersects(player.GetInteractionRange()))
+                if (
+                    mapEntity.InteractScript != null
+                    && mapEntity.Intersects(player.GetInteractionRange())
+                )
                 {
                     playerTouchingMapEntities.Add(mapEntity);
                 }
@@ -486,7 +501,10 @@ namespace Engine.Scene
             MapEntity interactedEntity = null;
             if (playerTouchingMapEntities.Count == 1)
             {
-                if (playerTouchingMapEntities[0].IsUncollidable || IsInteractedEntityValid(playerTouchingMapEntities[0], player))
+                if (
+                    playerTouchingMapEntities[0].IsUncollidable
+                    || IsInteractedEntityValid(playerTouchingMapEntities[0], player)
+                )
                 {
                     interactedEntity = playerTouchingMapEntities[0];
                 }
@@ -499,7 +517,9 @@ namespace Engine.Scene
                 {
                     if (mapEntity.IsUncollidable || IsInteractedEntityValid(mapEntity, player))
                     {
-                        float areaOverlapped = mapEntity.GetAreaOverlapped(player.GetInteractionRange());
+                        float areaOverlapped = mapEntity.GetAreaOverlapped(
+                            player.GetInteractionRange()
+                        );
                         if (areaOverlapped > currentLargestAreaOverlapped)
                         {
                             currentLargestAreaOverlappedEntity = mapEntity;
@@ -535,16 +555,25 @@ namespace Engine.Scene
                 return true;
             }
 
-            bool isEntityOverOrUnderPlayer = entityBounds.Y2 < playerBounds.Y1 || entityBounds.Y1 > playerBounds.Y2;
+            bool isEntityOverOrUnderPlayer =
+                entityBounds.Y2 < playerBounds.Y1 || entityBounds.Y1 > playerBounds.Y2;
             if (interactedEntity is NPC)
             {
                 // if player is facing left and entity is either on top of or underneath player and player's center point is greater than entity's center point, location is valid
-                if (player.FacingDirection == Direction.LEFT && isEntityOverOrUnderPlayer && playerBounds.X1 < entityBounds.X2)
+                if (
+                    player.FacingDirection == Direction.LEFT
+                    && isEntityOverOrUnderPlayer
+                    && playerBounds.X1 < entityBounds.X2
+                )
                 {
                     return true;
                 }
                 // if player is facing right and entity is either on top of or underneath player and player's center point is less than entity's center point, location is valid
-                else if (player.FacingDirection == Direction.RIGHT && isEntityOverOrUnderPlayer && playerBounds.X2 > entityBounds.X1)
+                else if (
+                    player.FacingDirection == Direction.RIGHT
+                    && isEntityOverOrUnderPlayer
+                    && playerBounds.X2 > entityBounds.X1
+                )
                 {
                     return true;
                 }
