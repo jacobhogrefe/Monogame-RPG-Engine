@@ -18,10 +18,29 @@ namespace App.Maps
 {
     public class SpookyMap : Map
     {
-        public SpookyMap(ContentLoader contentLoader)
-            : base("biomes/spooky.txt", new SpookyTileset(contentLoader), contentLoader)
+        public SpookyMap(ContentLoader contentLoader, FlagManager flagManager)
+            : base("biomes/spooky.txt", new SpookyTileset(contentLoader), contentLoader, flagManager)
         {
           PlayerStartPosition = GetMapTile(8, 12).Location;
+        }
+
+        protected override Dictionary<string, bool> LoadFlags()
+        {
+            return new Dictionary<string, bool>() {
+                { "FoundtheLostEyes", false },
+                { "Searchlosteyes", false },
+                { "firstTalktoCoraline", false },
+                { "removeitem", false }
+            };
+        }
+
+        protected override List<NPC> LoadNPCs()
+        {
+            List<NPC> npcs = new List<NPC>();
+            Coraline coraline = new Coraline(1, GetMapTile(10,8).Location, ContentLoader)
+            {InteractScript = new CoralineScript()};
+            npcs.Add(coraline);
+            return npcs;
         }
     }
 }

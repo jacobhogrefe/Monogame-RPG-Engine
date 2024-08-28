@@ -32,16 +32,11 @@ namespace App.Screens
 
         public override void Initialize()
         {
-            // setup state
+            // global flags go here
             flagManager = new FlagManager();
-            flagManager.AddFlag("hasLostBall", false);
-            flagManager.AddFlag("hasTalkedToWalrus", false);
-            flagManager.AddFlag("hasTalkedToDinosaur", false);
-            flagManager.AddFlag("hasFoundBall", false);
 
             // define/setup map
-            map = new SpookyMap(ContentLoader);
-            map.FlagManager = flagManager;
+            map = new MushroomMap(ContentLoader, flagManager);
 
             // setup player
             player = new Cat(map.PlayerStartPosition.X, map.PlayerStartPosition.Y, ContentLoader);
