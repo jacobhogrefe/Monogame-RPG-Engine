@@ -56,5 +56,11 @@ namespace App.Maps
                 },
             };
         }
+
+        protected override void LoadScripts()
+        {
+            // enter house
+            // GetMapTile(5,23).InteractScript
+        }
     }
 }

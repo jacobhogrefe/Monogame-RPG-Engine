@@ -56,7 +56,9 @@ namespace App.Maps
 
         protected override void LoadScripts()
         {
-            base.LoadScripts();
+            // enter house and saloon
+            // GetMapTile(17, 25).InteractScript
+            // GetMapTile(18, 25).InteractScript
         }
     }
 }

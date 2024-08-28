@@ -20,5 +20,11 @@ namespace App.Maps
             : base("homes/spooky.txt", new SpookyHouseTileset(contentLoader), contentLoader) {
                 PlayerStartPosition = GetMapTile(9, 10).Location;
             }
+
+        protected override void LoadScripts()
+        {
+            // leave house
+            // GetMapTile(8, 11).InteractScript
+        }
     }
 }

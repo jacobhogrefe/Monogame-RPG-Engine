@@ -20,5 +20,11 @@ namespace App.Maps
             : base("homes/mountains.txt", new TreeHouseTileset(contentLoader), contentLoader) {
                 PlayerStartPosition = GetMapTile(10, 9).Location;
             }
+        
+        protected override void LoadScripts()
+        {
+            //leave tree house
+            // GetMapTile(3,10).InteractScript
+        }
     }
 }

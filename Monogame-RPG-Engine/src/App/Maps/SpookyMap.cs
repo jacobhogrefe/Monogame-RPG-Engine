@@ -50,5 +50,11 @@ namespace App.Maps
                 },
             };
         }
+
+        protected override void LoadScripts()
+        {
+            // enter castle
+            // GetMapTile(6, 5).InteractScript
+        }
     }
 }

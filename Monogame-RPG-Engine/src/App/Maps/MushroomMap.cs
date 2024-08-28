@@ -50,5 +50,13 @@ namespace App.Maps
                 },
             };
         }
+
+        protected override void LoadScripts()
+        {
+            // enter house
+            // GetMapTile(15, 7).setInteractScript
+		    GetMapTile(12, 12).InteractScript = new SimpleTextScript("Shiitake's garden of dancing mushrooms.");
+		    GetMapTile(17, 8).InteractScript = new SimpleTextScript("Shiitake's house");
+        }
     }
 }

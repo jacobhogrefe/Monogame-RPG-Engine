@@ -20,5 +20,11 @@ namespace App.Maps
             : base("homes/walrus.txt", new HouseTileset(contentLoader), contentLoader) {
                 PlayerStartPosition = GetMapTile(10, 8).Location;
             }
+
+        protected override void LoadScripts()
+        {
+            //leave house
+            // GetMapTile(8, 11).InteractScript
+        }
     }
 }

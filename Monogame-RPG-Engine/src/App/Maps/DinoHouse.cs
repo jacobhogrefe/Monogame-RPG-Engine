@@ -20,5 +20,11 @@ namespace App.Maps
             : base("homes/dino.txt", new HouseTileset(contentLoader), contentLoader) {
                 PlayerStartPosition = GetMapTile(11, 9).Location;
             }
+
+        protected override void LoadScripts()
+        {
+            // leave house
+            // GetMapTile(8, 11).InteractScript
+        }
     }
 }

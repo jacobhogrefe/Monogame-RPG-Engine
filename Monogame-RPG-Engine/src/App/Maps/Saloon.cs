@@ -36,5 +36,12 @@ namespace App.Maps
                 }
             };
         }
+
+        protected override void LoadScripts()
+        {
+            // leave saloon
+            // GetMapTile(7, 11).InteractScript
+    	    // GetMapTile(8, 11).InteractScript
+        }
     }
 }

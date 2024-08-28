@@ -82,6 +82,13 @@ namespace App.Maps
             GetMapTile(20, 4).InteractScript = new SimpleTextScript("Dino's house");
 
             GetMapTile(2, 6).InteractScript = new TreeScript();
+
+            //house entering scripts    
+            // GetMapTile(17, 19).InteractScript
+            
+            // GetMapTile(4, 26).InteractScript
+            
+            // GetMapTile(17, 4).InteractScript
         }
     }
 }
