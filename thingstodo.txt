@@ -1,0 +1,13 @@
+full feature list:
+be able to enter a house
+go between all of the maps and teleport properly
+add all of the proper scripts to the npcs
+add a collectible system
+add an inventory system
+add a sound/music system (on a separate thread cuz why not)
+add in all of the house maps/tilesets
+
+cleanup:
+fix hitboxes of npcs
+fix delays of npcs
+remove unused imports

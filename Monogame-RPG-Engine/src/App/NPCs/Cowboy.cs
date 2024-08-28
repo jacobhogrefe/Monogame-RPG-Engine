@@ -7,17 +7,16 @@ using Engine.Scene;
 using Engine.Utils;
 using Microsoft.Xna.Framework.Graphics;
 
-// This class is for the dinosaur NPC
 namespace App.NPCs
 {
-    public class RanchOwner : NPC
+    public class Cowboy : NPC
     {
-        public RanchOwner(int id, Point location, ContentLoader contentLoader)
+        public Cowboy(int id, Point location, ContentLoader contentLoader)
             : base(
                 id,
                 location.X,
                 location.Y,
-                new SpriteSheet(contentLoader.LoadTexture(GraphicsHelper.RANCH_OWNER), 33, 41),
+                new SpriteSheet(contentLoader.LoadTexture(GraphicsHelper.COWBOY), 42, 42),
                 "STAND_LEFT"
             ) { }
 
@@ -30,9 +29,9 @@ namespace App.NPCs
                     new Frame[]
                     {
                         new FrameBuilder(spriteSheet.GetSprite(0, 0))
-                            .WithScale(2)
-                            .WithSpriteEffect(SpriteEffects.FlipHorizontally)
-                            .WithBounds(8, 10, 8, 25)
+                            .WithScale(3)
+                            .WithBounds(10, 17, 11, 7)
+                            .WithSpriteEffect(SpriteEffects.FlipVertically)
                             .Build(),
                     }
                 },
@@ -41,8 +40,9 @@ namespace App.NPCs
                     new Frame[]
                     {
                         new FrameBuilder(spriteSheet.GetSprite(0, 0))
-                            .WithScale(2)
-                            .WithBounds(8, 10, 8, 25)
+                            .WithScale(3)
+                            .WithBounds(10, 17, 11, 7)
+                            .WithSpriteEffect(SpriteEffects.FlipVertically)
                             .Build(),
                     }
                 },

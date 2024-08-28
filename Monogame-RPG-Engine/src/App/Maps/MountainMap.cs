@@ -48,13 +48,13 @@ namespace App.Maps
 
         protected override List<NPC> LoadNPCs()
         {
-            List<NPC> npcs = new List<NPC>();
-            Mario mario = new Mario(42, GetMapTile(19, 18).Location, ContentLoader)
+            return new List<NPC>()
             {
-                InteractScript = new MarioScript(),
+                new Mario(42, GetMapTile(19, 18).Location, ContentLoader)
+                {
+                    InteractScript = new MarioScript(),
+                },
             };
-            npcs.Add(mario);
-            return npcs;
         }
     }
 }

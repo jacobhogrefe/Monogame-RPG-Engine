@@ -44,27 +44,14 @@ namespace App.Maps
 
         protected override List<NPC> LoadNPCs()
         {
-            List<NPC> npcs = new List<NPC>();
-            BartenderWalrus bWalrus = new BartenderWalrus(
-                5,
-                GetMapTile(18, 18).Location,
-                ContentLoader
-            )
+            return new List<NPC>()
             {
-                InteractScript = new BartenderWalrusScript(),
+                new Cattle(3, GetMapTile(10, 10).Location, ContentLoader),
+                new RanchOwner(7, GetMapTile(5, 20).Location, ContentLoader)
+                {
+                    InteractScript = new OwnerScript(),
+                },
             };
-            npcs.Add(bWalrus);
-
-            Cattle cattle1 = new Cattle(3, GetMapTile(10, 10).Location, ContentLoader);
-            npcs.Add(cattle1);
-
-            RanchOwner doug = new RanchOwner(7, GetMapTile(5, 20).Location, ContentLoader)
-            {
-                InteractScript = new OwnerScript(),
-            };
-            npcs.Add(doug);
-
-            return npcs;
         }
     }
 }

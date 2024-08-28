@@ -42,13 +42,13 @@ namespace App.Maps
 
         protected override List<NPC> LoadNPCs()
         {
-            List<NPC> npcs = new List<NPC>();
-            Dog dog = new Dog(1, GetMapTile(5, 5).Location.SubtractY(40), ContentLoader)
+            return new List<NPC>()
             {
-                InteractScript = new DogScript(),
+                new Dog(1, GetMapTile(5, 5).Location.SubtractY(40), ContentLoader)
+                {
+                    InteractScript = new DogScript(),
+                },
             };
-            npcs.Add(dog);
-            return npcs;
         }
     }
 }

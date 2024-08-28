@@ -36,7 +36,7 @@ namespace App.Screens
             flagManager = new FlagManager();
 
             // define/setup map
-            map = new MushroomMap(ContentLoader, flagManager);
+            map = new MountainMap(ContentLoader, flagManager);
 
             // setup player
             player = new Cat(map.PlayerStartPosition.X, map.PlayerStartPosition.Y, ContentLoader);
