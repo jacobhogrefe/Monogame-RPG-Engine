@@ -34,7 +34,13 @@ namespace App.Resources
         public static readonly string COMMON_TILESET = $"{pathPrefix}/CommonTileset";
         public static readonly string DESERT_TILESET = $"{pathPrefix}/DesertTileset";
         public static readonly string MUSHROOM_TILESET = $"{pathPrefix}/MushroomTileset";
-        public static readonly string MOUNTAIN_TILESET = $"{pathPrefix}/mountainsTextures";
+        public static readonly string MOUNTAIN_TILESET = $"{pathPrefix}/MountainsTileset";
         public static readonly string SPOOKY_TILESET = $"{pathPrefix}/SpookyTileset";
+        public static readonly string HOUSE_TILESET = $"{pathPrefix}/HouseTileset";
+        public static readonly string SALOON_TILESET = $"{pathPrefix}/SaloonTileset";
+        public static readonly string TITLE_TILESET = $"{pathPrefix}/TitleTileset";
+        public static readonly string TREE_HOUSE_TILESET = $"{pathPrefix}/TreeHouseTileset";
+        public static readonly string MUSHROOM_HOUSE_TILESET = $"{pathPrefix}/MushroomHouseTileset";
+        public static readonly string SPOOKY_HOUSE_TILESET = $"{pathPrefix}/SpookyHouseTileset";
     }
 }

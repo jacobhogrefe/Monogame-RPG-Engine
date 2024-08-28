@@ -18,7 +18,7 @@ namespace App.NPCs
                 location.X,
                 location.Y,
                 new SpriteSheet(contentLoader.LoadTexture(GraphicsHelper.BARTENDER_WALRUS), 24, 24),
-                "STAND_LEFT"
+                "STAND_RIGHT"
             ) { }
 
         public override Dictionary<string, Frame[]> LoadAnimations(SpriteSheet spriteSheet)

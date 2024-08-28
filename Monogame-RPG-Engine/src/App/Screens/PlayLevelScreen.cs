@@ -36,7 +36,7 @@ namespace App.Screens
             flagManager = new FlagManager();
 
             // define/setup map
-            map = new MountainMap(ContentLoader, flagManager);
+            map = new SpookyHouse(ContentLoader);
 
             // setup player
             player = new Cat(map.PlayerStartPosition.X, map.PlayerStartPosition.Y, ContentLoader);
@@ -74,10 +74,10 @@ namespace App.Screens
             }
 
             // if flag is set at any point during gameplay, game is "won"
-            if (map.FlagManager.IsFlagSet("hasFoundBall"))
-            {
-                PlayLevelScreenState = PlayLevelScreenStates.LEVEL_COMPLETED;
-            }
+            // if (map.FlagManager.IsFlagSet("hasFoundBall"))
+            // {
+            //     PlayLevelScreenState = PlayLevelScreenStates.LEVEL_COMPLETED;
+            // }
         }
 
         public override void Draw(GraphicsHandler graphicsHandler)

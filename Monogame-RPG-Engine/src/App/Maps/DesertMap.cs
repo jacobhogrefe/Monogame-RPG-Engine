@@ -53,5 +53,10 @@ namespace App.Maps
                 },
             };
         }
+
+        protected override void LoadScripts()
+        {
+            base.LoadScripts();
+        }
     }
 }

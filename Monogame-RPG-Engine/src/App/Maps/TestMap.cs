@@ -26,12 +26,10 @@ namespace App.Maps
 
         protected override List<EnhancedMapTile> LoadEnhancedMapTiles()
         {
-            List<EnhancedMapTile> enhancedMapTiles = new List<EnhancedMapTile>();
-
-            PushableRock pushableRock = new PushableRock(GetMapTile(2, 7).Location, ContentLoader);
-            enhancedMapTiles.Add(pushableRock);
-
-            return enhancedMapTiles;
+            return new List<EnhancedMapTile>()
+            {
+                new PushableRock(GetMapTile(2, 7).Location, ContentLoader),
+            };
         }
 
         protected override Dictionary<string, bool> LoadFlags()
@@ -67,11 +65,12 @@ namespace App.Maps
 
         protected override List<Trigger> LoadTriggers()
         {
-            List<Trigger> triggers = new List<Trigger>();
-            triggers.Add(new Trigger(790, 1030, 100, 10, new LostBallScript(), "hasLostBall"));
-            triggers.Add(new Trigger(790, 960, 10, 80, new LostBallScript(), "hasLostBall"));
-            triggers.Add(new Trigger(890, 960, 10, 80, new LostBallScript(), "hasLostBall"));
-            return triggers;
+            return new List<Trigger>()
+            {
+                new Trigger(790, 1030, 100, 10, new LostBallScript(), "hasLostBall"),
+                new Trigger(790, 960, 10, 80, new LostBallScript(), "hasLostBall"),
+                new Trigger(890, 960, 10, 80, new LostBallScript(), "hasLostBall"),
+            };
         }
 
         protected override void LoadScripts()
