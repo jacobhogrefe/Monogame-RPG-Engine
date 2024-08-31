@@ -18,18 +18,13 @@ namespace App.Maps
 {
     public class DesertMap : Map
     {
-        public DesertMap(ContentLoader contentLoader, FlagManager flagManager)
-            : base(
-                "biomes/desert.txt",
-                new DesertTileset(contentLoader),
-                contentLoader,
-                flagManager
-            )
+        public DesertMap(ContentLoader contentLoader)
+            : base("biomes/desert.txt", new DesertTileset(contentLoader), contentLoader)
         {
             PlayerStartPosition = GetMapTile(17, 20).Location;
         }
 
-        protected override Dictionary<string, bool> LoadFlags()
+        public override Dictionary<string, bool> LoadFlags()
         {
             return new Dictionary<string, bool>
             {
@@ -57,8 +52,8 @@ namespace App.Maps
         protected override void LoadScripts()
         {
             // enter house and saloon
-            // GetMapTile(17, 25).InteractScript
-            // GetMapTile(18, 25).InteractScript
+            GetMapTile(17, 25).InteractScript = new MapTeleportScript("SALOON", 350, 440);
+            GetMapTile(18, 25).InteractScript = new MapTeleportScript("SALOON", 350, 440);
         }
     }
 }

@@ -152,18 +152,6 @@ namespace Engine.Scene
             PlayerStartTile = new Point(0, 0);
         }
 
-        public Map(
-            string mapFileName,
-            Tileset tileset,
-            ContentLoader contentLoader,
-            FlagManager flagManager
-        )
-            : this(mapFileName, tileset, contentLoader)
-        {
-            FlagManager = flagManager;
-            SetupMap();
-        }
-
         // sets up map by reading in the map file to create the tile map
         // loads in enemies, enhanced map tiles, and npcs
         // and instantiates a Camera
@@ -177,12 +165,6 @@ namespace Engine.Scene
             foreach (EnhancedMapTile enhancedMapTile in EnhancedMapTiles)
             {
                 enhancedMapTile.SetMap(this);
-            }
-
-            if (FlagManager != null)
-            {
-                Flags = LoadFlags();
-                FlagManager.AddFlags(Flags);
             }
 
             NPCs = LoadNPCs();
@@ -364,7 +346,7 @@ namespace Engine.Scene
         }
 
         // list of flags tied to the map, should be overridden in a subclass
-        protected virtual Dictionary<string, bool> LoadFlags()
+        public virtual Dictionary<string, bool> LoadFlags()
         {
             return new Dictionary<string, bool>();
         }

@@ -213,7 +213,6 @@ namespace App.Tilesets
             Frame Castle2Frame = new FrameBuilder(GetSubImage(4, 1)).WithScale(TileScale).Build();
 
             MapTileBuilder Castle2Tile = new MapTileBuilder(Castle2Frame)
-                .WithTopLayer(Castle2Frame)
                 .WithTileType(TileType.NOT_PASSABLE);
 
             mapTiles.Add(Castle2Tile);
@@ -222,7 +221,6 @@ namespace App.Tilesets
             Frame Castle3Frame = new FrameBuilder(GetSubImage(4, 2)).WithScale(TileScale).Build();
 
             MapTileBuilder Castle3Tile = new MapTileBuilder(Castle3Frame)
-                .WithTopLayer(Castle3Frame)
                 .WithTileType(TileType.NOT_PASSABLE);
 
             mapTiles.Add(Castle3Tile);
@@ -231,7 +229,6 @@ namespace App.Tilesets
             Frame Castle4Frame = new FrameBuilder(GetSubImage(4, 3)).WithScale(TileScale).Build();
 
             MapTileBuilder Castle4Tile = new MapTileBuilder(Castle4Frame)
-                .WithTopLayer(Castle4Frame)
                 .WithTileType(TileType.NOT_PASSABLE);
 
             mapTiles.Add(Castle4Tile);
@@ -240,7 +237,6 @@ namespace App.Tilesets
             Frame Castle5Frame = new FrameBuilder(GetSubImage(4, 4)).WithScale(TileScale).Build();
 
             MapTileBuilder Castle5Tile = new MapTileBuilder(Castle5Frame)
-                .WithTopLayer(Castle5Frame)
                 .WithTileType(TileType.NOT_PASSABLE);
 
             mapTiles.Add(Castle5Tile);
@@ -249,7 +245,6 @@ namespace App.Tilesets
             Frame Castle6Frame = new FrameBuilder(GetSubImage(0, 4)).WithScale(TileScale).Build();
 
             MapTileBuilder Castle6Tile = new MapTileBuilder(Castle6Frame)
-                .WithTopLayer(Castle6Frame)
                 .WithTileType(TileType.NOT_PASSABLE);
 
             mapTiles.Add(Castle6Tile);

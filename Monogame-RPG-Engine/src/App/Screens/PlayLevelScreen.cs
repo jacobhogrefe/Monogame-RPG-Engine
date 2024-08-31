@@ -1,6 +1,7 @@
 ﻿using App.Main;
 using App.Maps;
 using App.Players;
+using App.Resources;
 using Engine.Core;
 using Engine.FontGraphics;
 using Engine.Scene;
@@ -19,11 +20,12 @@ namespace App.Screens
     public class PlayLevelScreen : Screen
     {
         protected ScreenCoordinator screenCoordinator;
-        protected Map map;
-        protected Player player;
+        protected static Map map;
+        protected static Player player;
+        protected FlagManager flagManager;
         protected PlayLevelScreenStates PlayLevelScreenState { get; private set; }
         protected WinScreen winScreen;
-        protected FlagManager flagManager;
+        protected static MapHelper mapHelper = new MapHelper(GlobalContentLoader);
 
         public PlayLevelScreen(ScreenCoordinator screenCoordinator)
         {
@@ -35,8 +37,15 @@ namespace App.Screens
             // global flags go here
             flagManager = new FlagManager();
 
+            // load all flags into flagManager
+            foreach (Map map in mapHelper.GetMaps()) {
+                flagManager.AddFlags(map.LoadFlags());
+            }
+
             // define/setup map
-            map = new SpookyHouse(ContentLoader);
+            map = mapHelper.GetMap("TEST_MAP");
+            map.FlagManager = flagManager;
+            Console.WriteLine(map.FlagManager.ToString());
 
             // setup player
             player = new Cat(map.PlayerStartPosition.X, map.PlayerStartPosition.Y, ContentLoader);
@@ -110,6 +119,17 @@ namespace App.Screens
         public enum PlayLevelScreenStates
         {
             RUNNING, LEVEL_COMPLETED
+        }
+
+        public static void Teleport(string map, float toX, float toY) {
+            Map destMap = mapHelper.GetMap(map);
+            destMap.FlagManager = PlayLevelScreen.map.FlagManager;
+            destMap.Textbox.InteractKey = player.INTERACT_KEY;
+            destMap.Player = player;
+            player.SetMap(destMap);
+            player.SetLocation(toX, toY);
+            destMap.PreloadScripts();
+            PlayLevelScreen.map = destMap;
         }
     }
 }

@@ -35,8 +35,7 @@ namespace App.Maps
 
         protected override void LoadScripts()
         {
-            // leave house
-            //GetMapTile(4, 2).InteractScript
+            GetMapTile(4, 2).InteractScript = new MapTeleportScript("MUSHROOM", 700, 384);
         }
     }
 }

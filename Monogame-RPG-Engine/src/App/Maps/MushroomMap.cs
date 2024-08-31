@@ -18,18 +18,13 @@ namespace App.Maps
 {
     public class MushroomMap : Map
     {
-        public MushroomMap(ContentLoader contentLoader, FlagManager flagManager)
-            : base(
-                "biomes/mushroom.txt",
-                new MushroomTileset(contentLoader),
-                contentLoader,
-                flagManager
-            )
+        public MushroomMap(ContentLoader contentLoader)
+            : base("biomes/mushroom.txt", new MushroomTileset(contentLoader), contentLoader)
         {
             PlayerStartPosition = GetMapTile(8, 12).Location;
         }
 
-        protected override Dictionary<string, bool> LoadFlags()
+        public override Dictionary<string, bool> LoadFlags()
         {
             return new Dictionary<string, bool>
             {
@@ -53,10 +48,11 @@ namespace App.Maps
 
         protected override void LoadScripts()
         {
-            // enter house
-            // GetMapTile(15, 7).setInteractScript
-		    GetMapTile(12, 12).InteractScript = new SimpleTextScript("Shiitake's garden of dancing mushrooms.");
-		    GetMapTile(17, 8).InteractScript = new SimpleTextScript("Shiitake's house");
+            GetMapTile(15, 7).InteractScript = new MapTeleportScript("MUSHROOM_HOUSE", 208, 144);
+            GetMapTile(12, 12).InteractScript = new SimpleTextScript(
+                "Shiitake's garden of dancing mushrooms."
+            );
+            GetMapTile(17, 8).InteractScript = new SimpleTextScript("Shiitake's house");
         }
     }
 }

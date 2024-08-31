@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using App.Resources;
+using App.Scripts;
 using App.Tilesets;
 using Engine.Core;
 using Engine.Entity;
@@ -23,8 +24,7 @@ namespace App.Maps
         
         protected override void LoadScripts()
         {
-            // leave house
-            // GetMapTile(8, 11).InteractScript
+            GetMapTile(8, 11).InteractScript = new MapTeleportScript("TEST_MAP", 825, 950);
         }
     }
 }

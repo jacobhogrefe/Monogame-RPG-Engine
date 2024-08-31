@@ -66,5 +66,9 @@ namespace Engine.Scene
             }
             return false;
         }
+
+        public override string ToString() {
+            return string.Join(", ", flags.Select(kvp => $"{kvp.Key}={kvp.Value}"));
+        }
     }
 }

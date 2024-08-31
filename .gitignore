@@ -72,8 +72,14 @@ obj/
 .vscode/
 
 todo.txt
+<<<<<<< HEAD
 .config/
 pipeline-references/
 
 # temporary
 *.sh
+=======
+.config/*
+!.config/dotnet-tools.json
+pipeline-references/
+>>>>>>> 9c8b8a362ba2ac3719873ac2d7c4308009ae6099

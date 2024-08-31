@@ -18,18 +18,13 @@ namespace App.Maps
 {
     public class MountainMap : Map
     {
-        public MountainMap(ContentLoader contentLoader, FlagManager flagManager)
-            : base(
-                "biomes/mountains.txt",
-                new MountainTileset(contentLoader),
-                contentLoader,
-                flagManager
-            )
+        public MountainMap(ContentLoader contentLoader)
+            : base("biomes/mountains.txt", new MountainTileset(contentLoader), contentLoader)
         {
             PlayerStartPosition = GetMapTile(17, 29).Location;
         }
 
-        protected override Dictionary<string, bool> LoadFlags()
+        public override Dictionary<string, bool> LoadFlags()
         {
             return new Dictionary<string, bool>
             {
@@ -60,7 +55,7 @@ namespace App.Maps
         protected override void LoadScripts()
         {
             // enter house
-            // GetMapTile(5,23).InteractScript
+            GetMapTile(5,23).InteractScript = new MapTeleportScript("TREE_HOUSE", 144, 432);
         }
     }
 }

@@ -18,18 +18,13 @@ namespace App.Maps
 {
     public class SpookyMap : Map
     {
-        public SpookyMap(ContentLoader contentLoader, FlagManager flagManager)
-            : base(
-                "biomes/spooky.txt",
-                new SpookyTileset(contentLoader),
-                contentLoader,
-                flagManager
-            )
+        public SpookyMap(ContentLoader contentLoader)
+            : base("biomes/spooky.txt", new SpookyTileset(contentLoader), contentLoader)
         {
             PlayerStartPosition = GetMapTile(8, 12).Location;
         }
 
-        protected override Dictionary<string, bool> LoadFlags()
+        public override Dictionary<string, bool> LoadFlags()
         {
             return new Dictionary<string, bool>()
             {
@@ -54,7 +49,7 @@ namespace App.Maps
         protected override void LoadScripts()
         {
             // enter castle
-            // GetMapTile(6, 5).InteractScript
+            GetMapTile(6, 5).InteractScript = new MapTeleportScript("SPOOKY_HOUSE", 384, 470);
         }
     }
 }

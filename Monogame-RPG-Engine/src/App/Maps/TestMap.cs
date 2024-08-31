@@ -18,8 +18,8 @@ namespace App.Maps
 {
     public class TestMap : Map
     {
-        public TestMap(ContentLoader contentLoader, FlagManager flagManager)
-            : base("test_map.txt", new CommonTileset(contentLoader), contentLoader, flagManager)
+        public TestMap(ContentLoader contentLoader)
+            : base("test_map.txt", new CommonTileset(contentLoader), contentLoader)
         {
             PlayerStartPosition = GetMapTile(17, 20).Location;
         }
@@ -32,7 +32,7 @@ namespace App.Maps
             };
         }
 
-        protected override Dictionary<string, bool> LoadFlags()
+        public override Dictionary<string, bool> LoadFlags()
         {
             return new Dictionary<string, bool>()
             {
@@ -84,11 +84,11 @@ namespace App.Maps
             GetMapTile(2, 6).InteractScript = new TreeScript();
 
             //house entering scripts    
-            // GetMapTile(17, 19).InteractScript
+            GetMapTile(17, 19).InteractScript = new MapTeleportScript("MAIN_HOUSE", 350, 440);
             
-            // GetMapTile(4, 26).InteractScript
+            GetMapTile(4, 26).InteractScript = new MapTeleportScript("WALRUS_HOUSE", 350, 440);
             
-            // GetMapTile(17, 4).InteractScript
+            GetMapTile(17, 4).InteractScript = new MapTeleportScript("DINO_HOUSE", 350, 440);
         }
     }
 }
