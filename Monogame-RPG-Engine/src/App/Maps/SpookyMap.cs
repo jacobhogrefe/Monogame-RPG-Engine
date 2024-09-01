@@ -51,5 +51,14 @@ namespace App.Maps
             // enter castle
             GetMapTile(6, 5).InteractScript = new MapTeleportScript("SPOOKY_HOUSE", 384, 470);
         }
+
+        protected override List<Trigger> LoadTriggers()
+        {
+            return new List<Trigger>()
+            {
+                new Trigger(WidthPixels - 10, 0, 10, HeightPixels, new SmartMapTeleportScript(Direction.RIGHT, "MOUNTAINS")),
+                new Trigger(0, HeightPixels - 10, WidthPixels, 10, new SmartMapTeleportScript(Direction.DOWN, "TEST_MAP")),
+            };
+        }
     }
 }

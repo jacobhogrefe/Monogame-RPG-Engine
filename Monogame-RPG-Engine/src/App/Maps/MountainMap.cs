@@ -57,5 +57,14 @@ namespace App.Maps
             // enter house
             GetMapTile(5,23).InteractScript = new MapTeleportScript("TREE_HOUSE", 144, 432);
         }
+
+        protected override List<Trigger> LoadTriggers()
+        {
+            return new List<Trigger>()
+            {
+                new Trigger(0, 0, 10, HeightPixels, new SmartMapTeleportScript(Direction.LEFT, "SPOOKY")),
+                new Trigger(0, HeightPixels - 10, WidthPixels, 10, new SmartMapTeleportScript(Direction.DOWN, "DESERT"))
+            };
+        }
     }
 }

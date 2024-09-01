@@ -54,5 +54,13 @@ namespace App.Maps
             );
             GetMapTile(17, 8).InteractScript = new SimpleTextScript("Shiitake's house");
         }
+
+        protected override List<Trigger> LoadTriggers()
+        {
+            return new List<Trigger>()
+            {
+                new Trigger(WidthPixels - 10, 0, 10, HeightPixels, new SmartMapTeleportScript(Direction.RIGHT, "TEST_MAP"))
+            };
+        }
     }
 }

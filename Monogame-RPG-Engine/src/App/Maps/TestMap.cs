@@ -70,6 +70,9 @@ namespace App.Maps
                 new Trigger(790, 1030, 100, 10, new LostBallScript(), "hasLostBall"),
                 new Trigger(790, 960, 10, 80, new LostBallScript(), "hasLostBall"),
                 new Trigger(890, 960, 10, 80, new LostBallScript(), "hasLostBall"),
+                new Trigger(WidthPixels - 10, 0, 10, HeightPixels, new SmartMapTeleportScript(Direction.RIGHT, "DESERT")),
+                new Trigger(0, 0, 10, HeightPixels, new SmartMapTeleportScript(Direction.LEFT, "MUSHROOM")),
+                new Trigger(0, 0, WidthPixels, 10, new SmartMapTeleportScript(Direction.UP, "SPOOKY"))
             };
         }
 

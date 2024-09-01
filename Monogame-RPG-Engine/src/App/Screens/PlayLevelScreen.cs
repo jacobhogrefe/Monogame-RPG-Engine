@@ -22,10 +22,10 @@ namespace App.Screens
         protected ScreenCoordinator screenCoordinator;
         protected static Map map;
         protected static Player player;
-        protected FlagManager flagManager;
+        protected static FlagManager flagManager = new FlagManager();
         protected PlayLevelScreenStates PlayLevelScreenState { get; private set; }
         protected WinScreen winScreen;
-        protected static MapHelper mapHelper = new MapHelper(GlobalContentLoader);
+        public static MapHelper mapHelper = new MapHelper(GlobalContentLoader);
 
         public PlayLevelScreen(ScreenCoordinator screenCoordinator)
         {
@@ -35,7 +35,6 @@ namespace App.Screens
         public override void Initialize()
         {
             // global flags go here
-            flagManager = new FlagManager();
 
             // load all flags into flagManager
             foreach (Map map in mapHelper.GetMaps()) {
@@ -45,7 +44,6 @@ namespace App.Screens
             // define/setup map
             map = mapHelper.GetMap("TEST_MAP");
             map.FlagManager = flagManager;
-            Console.WriteLine(map.FlagManager.ToString());
 
             // setup player
             player = new Cat(map.PlayerStartPosition.X, map.PlayerStartPosition.Y, ContentLoader);
@@ -123,7 +121,7 @@ namespace App.Screens
 
         public static void Teleport(string map, float toX, float toY) {
             Map destMap = mapHelper.GetMap(map);
-            destMap.FlagManager = PlayLevelScreen.map.FlagManager;
+            destMap.FlagManager = flagManager;
             destMap.Textbox.InteractKey = player.INTERACT_KEY;
             destMap.Player = player;
             player.SetMap(destMap);

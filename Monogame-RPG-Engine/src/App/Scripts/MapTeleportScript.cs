@@ -27,9 +27,22 @@ namespace App.Scripts
             this.toY = toY;
         }
 
+        public MapTeleportScript(string map) {
+            this.map = map;
+            toX = 0;
+            toY = 0;
+        }
+
         public override List<ScriptAction> LoadScriptActions()
         {
-            return new List<ScriptAction> { new TeleportPlayerScriptAction(map, toX, toY) };
+            return new List<ScriptAction>
+            {
+                new DynamicScriptAction(() =>
+                {
+                    PlayLevelScreen.Teleport(map, toX, toY);
+                    return ScriptState.COMPLETED;
+                }),
+            };
         }
     }
 }

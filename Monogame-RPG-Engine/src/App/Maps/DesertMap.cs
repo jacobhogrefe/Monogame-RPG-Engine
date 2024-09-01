@@ -55,5 +55,14 @@ namespace App.Maps
             GetMapTile(17, 25).InteractScript = new MapTeleportScript("SALOON", 350, 440);
             GetMapTile(18, 25).InteractScript = new MapTeleportScript("SALOON", 350, 440);
         }
+
+        protected override List<Trigger> LoadTriggers()
+        {
+            return new List<Trigger>()
+            {
+                new Trigger(0, 0, 10, HeightPixels, new SmartMapTeleportScript(Direction.LEFT, "TEST_MAP")),
+                new Trigger(0, 0, WidthPixels, 10, new SmartMapTeleportScript(Direction.UP, "MOUNTAINS")),
+            };
+        }
     }
 }

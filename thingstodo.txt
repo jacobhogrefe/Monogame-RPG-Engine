@@ -1,11 +1,12 @@
 full feature list:
-be able to enter a house
 go between all of the maps and teleport properly
 add all of the proper scripts to the npcs
+  add all of the necessary flags to the maps
 add a collectible system
 add an inventory system
 add a sound/music system (on a separate thread cuz why not)
 
 cleanup:
 fix hitboxes of npcs
-fix delays of npcs
+fix delays of animations
+rework teleporting
