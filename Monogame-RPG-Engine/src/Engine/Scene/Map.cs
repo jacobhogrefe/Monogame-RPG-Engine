@@ -8,7 +8,9 @@ using Engine.Core;
 using Engine.Entity;
 using Engine.Extensions;
 using Engine.Utils;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using MonoGame.Extended;
 
 /*
@@ -64,6 +66,8 @@ namespace Engine.Scene
         public Dictionary<string, bool> Flags { get; set; }
         public List<NPC> NPCs { get; private set; }
         public List<Trigger> Triggers { get; private set; }
+        public Dictionary<string, SoundEffect> Sounds { get; protected set; }
+        public Song Song { get; protected set; }
 
         // returns all active enhanced map tiles (enhanced map tiles that are a part of the current update cycle) -- this changes every frame by the Camera class
         public List<EnhancedMapTile> ActiveEnhancedMapTiles
@@ -650,6 +654,27 @@ namespace Engine.Scene
                 }
             }
         }
+
+        // // plays the desired sound effect in this objects Sounds variable
+        // public void PlaySoundEffect(string SFXName)
+        // {
+        //     if (Sounds != null)
+        //         Sounds[SFXName].Play();
+        // }
+
+        // // pauses the desired sound effect in this objects Sounds variable
+        // public void PauseSoundEffect(string SFXName)
+        // {
+        //     if (Sounds != null)
+        //         Sounds[SFXName].Pause();
+        // }
+
+        // // restarts the desired sound effect in this objects Sounds variable
+        // public void StopSoundEffect(string SFXName)
+        // {
+        //     if (Sounds != null)
+        //         Sounds[SFXName].Stop();
+        // }
 
         public void Reset()
         {

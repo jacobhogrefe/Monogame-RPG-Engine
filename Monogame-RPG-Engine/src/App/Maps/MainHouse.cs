@@ -11,17 +11,19 @@ using Engine.Entity;
 using Engine.Scene;
 using Engine.Utils;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 
 namespace App.Maps
 {
     public class MainHouse : Map
     {
-
         public MainHouse(ContentLoader contentLoader)
-            : base("homes/house.txt", new HouseTileset(contentLoader), contentLoader) {
-                PlayerStartPosition = GetMapTile(10, 10).Location;
-            }
-        
+            : base("homes/house.txt", new HouseTileset(contentLoader), contentLoader)
+        {
+            PlayerStartPosition = GetMapTile(10, 10).Location;
+            Song = contentLoader.Load<Song>(SoundHelper.ARIA_MATH);
+        }
+
         protected override void LoadScripts()
         {
             GetMapTile(8, 11).InteractScript = new MapTeleportScript("TEST_MAP", 825, 950);

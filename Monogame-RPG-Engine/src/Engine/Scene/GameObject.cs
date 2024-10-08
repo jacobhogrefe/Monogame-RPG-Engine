@@ -10,6 +10,7 @@ using Engine.Extensions;
 using Engine.Core;
 using Engine.Entity;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 
 /*
 	The all important GameObject class is what every "entity" used in this game should be based off of
@@ -19,6 +20,7 @@ using Microsoft.Xna.Framework.Input;
 	2. animation logic for the sprite
 	3. collision detection with a map
 	4. performing proper draw logic based on camera movement
+    *5. playing sounds associated with an object
  */
 namespace Engine.Scene
 {
@@ -39,6 +41,8 @@ namespace Engine.Scene
         protected Map map;
 
         public bool IsAffectedByTriggers { get; set; } = false;
+
+        public Dictionary<string, SoundEffect> Sounds { get; set; }
 
         // gets x location taking into account map camera position
         public float CalibratedXLocation
@@ -349,6 +353,24 @@ namespace Engine.Scene
         {
             this.map = map;
         }
+
+        // // plays the desired sound effect in this objects Sounds variable
+        // public void PlaySoundEffect(string SFXName)
+        // {
+        //     if (Sounds != null) Sounds[SFXName].Play();
+        // }
+
+        // // pauses the desired sound effect in this objects Sounds variable
+        // public void PauseSoundEffect(string SFXName)
+        // {
+        //     if (Sounds != null) Sounds[SFXName].Pause();
+        // }
+
+        // // restarts the desired sound effect in this objects Sounds variable
+        // public void StopSoundEffect(string SFXName)
+        // {
+        //     if (Sounds != null) Sounds[SFXName].Stop();
+        // }
 
         public override void Draw(GraphicsHandler graphicsHandler)
         {

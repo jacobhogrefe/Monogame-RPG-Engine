@@ -11,16 +11,18 @@ using Engine.Entity;
 using Engine.Scene;
 using Engine.Utils;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 
 namespace App.Maps
 {
     public class WalrusHouse : Map
     {
-
         public WalrusHouse(ContentLoader contentLoader)
-            : base("homes/walrus.txt", new HouseTileset(contentLoader), contentLoader) {
-                PlayerStartPosition = GetMapTile(10, 8).Location;
-            }
+            : base("homes/walrus.txt", new HouseTileset(contentLoader), contentLoader)
+        {
+            PlayerStartPosition = GetMapTile(10, 8).Location;
+            Song = contentLoader.Load<Song>(SoundHelper.ARIA_MATH);
+        }
 
         protected override void LoadScripts()
         {

@@ -1,4 +1,6 @@
-﻿using Engine.Builders;
+﻿using App.Resources;
+using Engine.Builders;
+using Engine.Core;
 using Engine.Entity;
 using Engine.Scene;
 using Engine.ScriptActions;
@@ -14,6 +16,10 @@ namespace App.Scripts
 {
     public class DinoScript : Script
     {
+        protected ContentLoader contentLoader;
+        public DinoScript(ContentLoader contentLoader) {
+            this.contentLoader = contentLoader;
+        }
         public override List<ScriptAction> LoadScriptActions()
         {
             List<ScriptAction> scriptActions = new List<ScriptAction>();
@@ -35,7 +41,8 @@ namespace App.Scripts
                         .AddText("So I kicked it as far as I could into the forest to the left.")
                         .AddText("Now, if you'll excuse me, I have to go.")
                     )
-
+                    
+                    .AddScriptAction(new PlaySoundScriptAction(SoundHelper.WALKING_GRASS, contentLoader))
                     .AddScriptAction(new NPCStandScriptAction(Direction.RIGHT))
                     .AddScriptAction(new NPCWalkScriptAction(Direction.DOWN, 36, 2))
                     .AddScriptAction(new NPCWalkScriptAction(Direction.RIGHT, 196, 2))

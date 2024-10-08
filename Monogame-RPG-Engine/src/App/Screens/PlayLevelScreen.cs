@@ -1,4 +1,10 @@
-﻿using App.Main;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.AccessControl;
+using System.Text;
+using System.Threading.Tasks;
+using App.Main;
 using App.Maps;
 using App.Players;
 using App.Resources;
@@ -8,11 +14,7 @@ using Engine.Scene;
 using Engine.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Xna.Framework.Media;
 
 // This class is for the win level screen
 namespace App.Screens
@@ -37,7 +39,8 @@ namespace App.Screens
             // global flags go here
 
             // load all flags into flagManager
-            foreach (Map map in mapHelper.GetMaps()) {
+            foreach (Map map in mapHelper.GetMaps())
+            {
                 flagManager.AddFlags(map.LoadFlags());
             }
 
@@ -59,6 +62,7 @@ namespace App.Screens
             // preloads all scripts ahead of time rather than loading them dynamically
             // both are supported, however preloading is recommended
             map.PreloadScripts();
+            MediaPlayer.Play(map.Song);
 
             winScreen = new WinScreen(this);
             winScreen.Initialize();
@@ -110,23 +114,37 @@ namespace App.Screens
         public void GoBackToMenu()
         {
             screenCoordinator.GameState = GameState.MENU;
-
         }
 
         // This enum represents the different states this screen can be in
         public enum PlayLevelScreenStates
         {
-            RUNNING, LEVEL_COMPLETED
+            RUNNING,
+            LEVEL_COMPLETED,
         }
 
-        public static void Teleport(string map, float toX, float toY) {
+        public static void Teleport(string map, float toX, float toY)
+        {
             Map destMap = mapHelper.GetMap(map);
             destMap.FlagManager = flagManager;
+
+            // setup player on destination map
             destMap.Textbox.InteractKey = player.INTERACT_KEY;
             destMap.Player = player;
             player.SetMap(destMap);
             player.SetLocation(toX, toY);
             destMap.PreloadScripts();
+
+            // // stop all playing sound effects
+            // if (PlayLevelScreen.map.Sounds != null)
+            // {
+            //     foreach (SoundEffect sound in PlayLevelScreen.map.Sounds.Values)
+            //     {
+            //         sound.Stop();
+            //     }
+            // }
+            MediaPlayer.Stop();
+            MediaPlayer.Play(destMap.Song);
             PlayLevelScreen.map = destMap;
         }
     }

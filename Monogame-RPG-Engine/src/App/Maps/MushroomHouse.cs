@@ -12,6 +12,7 @@ using Engine.Entity;
 using Engine.Scene;
 using Engine.Utils;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 
 namespace App.Maps
 {
@@ -21,6 +22,7 @@ namespace App.Maps
         public MushroomHouse(ContentLoader contentLoader)
             : base("homes/mushroom.txt", new MushroomHouseTileset(contentLoader), contentLoader) {
                 PlayerStartPosition = GetMapTile(8, 10).Location;
+                Song = contentLoader.Load<Song>(SoundHelper.MUSHROOM_HOME);
             }
 
         protected override List<NPC> LoadNPCs()

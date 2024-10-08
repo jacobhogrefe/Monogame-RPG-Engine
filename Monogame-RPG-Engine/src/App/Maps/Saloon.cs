@@ -12,6 +12,7 @@ using Engine.Entity;
 using Engine.Scene;
 using Engine.Utils;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 
 namespace App.Maps
 {
@@ -21,6 +22,7 @@ namespace App.Maps
         public Saloon(ContentLoader contentLoader)
             : base("homes/saloon.txt", new SaloonTileset(contentLoader), contentLoader) {
                 PlayerStartPosition = GetMapTile(10, 11).Location;
+                Song = contentLoader.Load<Song>(SoundHelper.HIPPIES_AND_COWBOYS);
             }
 
         protected override List<NPC> LoadNPCs()

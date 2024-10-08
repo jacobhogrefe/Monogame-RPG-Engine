@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using App.EnhancedMapTiles;
+using App.Main;
 using App.NPCs;
+using App.Resources;
 using App.Scripts;
 using App.Tilesets;
 using Engine.Core;
@@ -12,6 +14,7 @@ using Engine.Entity;
 using Engine.Scene;
 using Engine.Utils;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using MonoGame.Extended.Collections;
 
 namespace App.Maps
@@ -22,6 +25,7 @@ namespace App.Maps
             : base("test_map.txt", new CommonTileset(contentLoader), contentLoader)
         {
             PlayerStartPosition = GetMapTile(17, 20).Location;
+            Song = contentLoader.Load<Song>(SoundHelper.TEST_MAP);
         }
 
         protected override List<EnhancedMapTile> LoadEnhancedMapTiles()
@@ -53,7 +57,7 @@ namespace App.Maps
 
             Dinosaur dinosaur = new Dinosaur(2, GetMapTile(13, 4).Location, ContentLoader);
             dinosaur.ExistenceFlag = "hasTalkedToDinosaur";
-            dinosaur.InteractScript = new DinoScript();
+            dinosaur.InteractScript = new DinoScript(ContentLoader);
             npcs.Add(dinosaur);
 
             Bug bug = new Bug(3, GetMapTile(7, 12).Location.SubtractX(20), ContentLoader);
@@ -73,6 +77,9 @@ namespace App.Maps
                 new Trigger(WidthPixels - 10, 0, 10, HeightPixels, new SmartMapTeleportScript(Direction.RIGHT, "DESERT")),
                 new Trigger(0, 0, 10, HeightPixels, new SmartMapTeleportScript(Direction.LEFT, "MUSHROOM")),
                 new Trigger(0, 0, WidthPixels, 10, new SmartMapTeleportScript(Direction.UP, "SPOOKY"))
+                // new MapEdgeTrigger(Direction.RIGHT, "DESERT"),
+                // new MapEdgeTrigger(Direction.UP, "SPOOKY"),
+                // new MapEdgeTrigger(Direction.LEFT, "MUSHROOM")
             };
         }
 

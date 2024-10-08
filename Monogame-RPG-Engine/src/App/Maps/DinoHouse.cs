@@ -11,16 +11,18 @@ using Engine.Entity;
 using Engine.Scene;
 using Engine.Utils;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 
 namespace App.Maps
 {
     public class DinoHouse : Map
     {
-
         public DinoHouse(ContentLoader contentLoader)
-            : base("homes/dino.txt", new HouseTileset(contentLoader), contentLoader) {
-                PlayerStartPosition = GetMapTile(11, 9).Location;
-            }
+            : base("homes/dino.txt", new HouseTileset(contentLoader), contentLoader)
+        {
+            PlayerStartPosition = GetMapTile(11, 9).Location;
+            Song = contentLoader.Load<Song>(SoundHelper.ARIA_MATH);
+        }
 
         protected override void LoadScripts()
         {

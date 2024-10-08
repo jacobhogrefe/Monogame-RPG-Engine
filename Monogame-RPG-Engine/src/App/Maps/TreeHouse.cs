@@ -11,6 +11,7 @@ using Engine.Entity;
 using Engine.Scene;
 using Engine.Utils;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 
 namespace App.Maps
 {
@@ -20,6 +21,7 @@ namespace App.Maps
         public TreeHouse(ContentLoader contentLoader)
             : base("homes/mountains.txt", new TreeHouseTileset(contentLoader), contentLoader) {
                 PlayerStartPosition = GetMapTile(10, 9).Location;
+                Song = contentLoader.Load<Song>(SoundHelper.STEAM_GARDENS);
             }
         
         protected override void LoadScripts()

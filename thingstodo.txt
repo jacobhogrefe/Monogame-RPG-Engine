@@ -1,12 +1,19 @@
 full feature list:
-go between all of the maps and teleport properly
 add all of the proper scripts to the npcs
   add all of the necessary flags to the maps
 add a collectible system
 add an inventory system
-add a sound/music system (on a separate thread cuz why not)
+* add a sound/music system (on a separate thread cuz why not)
 
 cleanup:
 fix hitboxes of npcs
 fix delays of animations
 rework teleporting
+
+for a full out sound feature:
+interact sounds
+music manager to manage which music plays
+map entity move sounds
+different sounds for different terrains (LATER ON)
+ui sounds in screens
+songs in the screens

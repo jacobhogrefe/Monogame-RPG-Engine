@@ -27,14 +27,19 @@
 				"TextureFormat": "Color"
 			}
 		},
-		"spritefonts":
+		"music":
 		{
-			"path": "Fonts/SpriteFonts/*.spritefont",
+			"path": "Audio/*.wav",
 			"recursive": "True",
 			"action": "build",
-			"importer": "FontDescriptionImporter",
-			"processor": "FontDescriptionProcessor"
+			"importer": "WavImporter",
+			"processor": "SongProcessor",
+			"processorParam":
+			{
+				"Quality": "Low"
+			}
 		},
+
 		"truetypefonts": 
 		{
 			"path": "Fonts/TrueTypeFonts/*.ttf",

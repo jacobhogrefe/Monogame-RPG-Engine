@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using App.EnhancedMapTiles;
 using App.NPCs;
+using App.Resources;
 using App.Scripts;
 using App.Tilesets;
 using Engine.Core;
@@ -12,6 +13,7 @@ using Engine.Entity;
 using Engine.Scene;
 using Engine.Utils;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using MonoGame.Extended.Collections;
 
 namespace App.Maps
@@ -22,6 +24,7 @@ namespace App.Maps
             : base("biomes/mountains.txt", new MountainTileset(contentLoader), contentLoader)
         {
             PlayerStartPosition = GetMapTile(17, 29).Location;
+            Song = contentLoader.Load<Song>(SoundHelper.MOUNTAINS);
         }
 
         public override Dictionary<string, bool> LoadFlags()

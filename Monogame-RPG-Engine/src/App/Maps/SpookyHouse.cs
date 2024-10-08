@@ -11,6 +11,7 @@ using Engine.Entity;
 using Engine.Scene;
 using Engine.Utils;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 
 namespace App.Maps
 {
@@ -20,6 +21,7 @@ namespace App.Maps
         public SpookyHouse(ContentLoader contentLoader)
             : base("homes/spooky.txt", new SpookyHouseTileset(contentLoader), contentLoader) {
                 PlayerStartPosition = GetMapTile(9, 10).Location;
+                Song = contentLoader.Load<Song>(SoundHelper.ARIA_MATH);
             }
 
         protected override void LoadScripts()
