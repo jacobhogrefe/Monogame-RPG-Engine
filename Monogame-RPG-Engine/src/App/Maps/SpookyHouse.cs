@@ -21,7 +21,7 @@ namespace App.Maps
         public SpookyHouse(ContentLoader contentLoader)
             : base("homes/spooky.txt", new SpookyHouseTileset(contentLoader), contentLoader) {
                 PlayerStartPosition = GetMapTile(9, 10).Location;
-                Song = contentLoader.Load<Song>(SoundHelper.ARIA_MATH);
+                Song = contentLoader.Load<Song>(SoundHelper.Songs.ARIA_MATH);
             }
 
         protected override void LoadScripts()

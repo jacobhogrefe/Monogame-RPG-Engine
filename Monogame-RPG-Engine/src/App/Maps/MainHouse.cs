@@ -21,7 +21,7 @@ namespace App.Maps
             : base("homes/house.txt", new HouseTileset(contentLoader), contentLoader)
         {
             PlayerStartPosition = GetMapTile(10, 10).Location;
-            Song = contentLoader.Load<Song>(SoundHelper.ARIA_MATH);
+            Song = contentLoader.Load<Song>(SoundHelper.Songs.ARIA_MATH);
         }
 
         protected override void LoadScripts()

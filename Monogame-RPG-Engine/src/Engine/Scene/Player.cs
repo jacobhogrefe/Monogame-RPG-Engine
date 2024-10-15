@@ -198,7 +198,7 @@ namespace Engine.Scene
 
         public override void OnEndCollisionCheckX(bool hasCollided, Direction direction, GameObject entityCollidedWith)
         {
- 
+
         }
 
         public override void OnEndCollisionCheckY(bool hasCollided, Direction direction, GameObject entityCollidedWith)

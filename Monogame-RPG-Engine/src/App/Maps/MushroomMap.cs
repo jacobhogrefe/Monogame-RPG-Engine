@@ -24,7 +24,7 @@ namespace App.Maps
             : base("biomes/mushroom.txt", new MushroomTileset(contentLoader), contentLoader)
         {
             PlayerStartPosition = GetMapTile(8, 12).Location;
-            Song = contentLoader.Load<Song>(SoundHelper.MUSHROOM);
+            Song = contentLoader.Load<Song>(SoundHelper.Songs.MUSHROOM);
         }
 
         public override Dictionary<string, bool> LoadFlags()

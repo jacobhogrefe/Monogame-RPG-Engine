@@ -24,7 +24,7 @@ namespace App.Maps
             : base("biomes/spooky.txt", new SpookyTileset(contentLoader), contentLoader)
         {
             PlayerStartPosition = GetMapTile(8, 12).Location;
-            Song = contentLoader.Load<Song>(SoundHelper.SPOOKY);
+            Song = contentLoader.Load<Song>(SoundHelper.Songs.SPOOKY);
         }
 
         public override Dictionary<string, bool> LoadFlags()
