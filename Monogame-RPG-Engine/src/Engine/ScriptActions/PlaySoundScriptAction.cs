@@ -33,7 +33,6 @@ namespace Engine.ScriptActions
             catch (Exception e)
             {
                 Console.WriteLine($"ERROR LOADING SOUND EFFECT: {e.Message}");
-                Console.WriteLine("HI");
              }
 
         }
