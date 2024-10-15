@@ -15,16 +15,8 @@ namespace Engine.ScriptActions
     public class PlaySoundScriptAction : ScriptAction
     {
         protected SoundEffect soundEffect;
-        protected string filePath;
-        protected ContentLoader contentLoader;
 
         public PlaySoundScriptAction(string filePath, ContentLoader contentLoader)
-        {
-            this.contentLoader = contentLoader;
-            this.filePath = filePath;
-        }
-
-        public override void Setup()
         {
             try
             {
@@ -33,7 +25,12 @@ namespace Engine.ScriptActions
             catch (Exception e)
             {
                 Console.WriteLine($"ERROR LOADING SOUND EFFECT: {e.Message}");
-             }
+            }
+        }
+
+        public override void Setup()
+        {
+
 
         }
 
