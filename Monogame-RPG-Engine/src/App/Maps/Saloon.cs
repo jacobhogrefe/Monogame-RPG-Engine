@@ -22,7 +22,7 @@ namespace App.Maps
         public Saloon(ContentLoader contentLoader)
             : base("homes/saloon.txt", new SaloonTileset(contentLoader), contentLoader) {
                 PlayerStartPosition = GetMapTile(10, 11).Location;
-                Song = contentLoader.Load<Song>(SoundHelper.HIPPIES_AND_COWBOYS);
+                Song = contentLoader.Load<Song>(SoundHelper.Songs.HIPPIES_AND_COWBOYS);
             }
 
         protected override List<NPC> LoadNPCs()

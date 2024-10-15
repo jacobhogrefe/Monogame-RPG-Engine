@@ -24,7 +24,7 @@ namespace App.Maps
             : base("biomes/desert.txt", new DesertTileset(contentLoader), contentLoader)
         {
             PlayerStartPosition = GetMapTile(17, 20).Location;
-            Song = contentLoader.Load<Song>(SoundHelper.GHOST_RIDERS);
+            Song = contentLoader.Load<Song>(SoundHelper.Songs.GHOST_RIDERS);
         }
 
         public override Dictionary<string, bool> LoadFlags()

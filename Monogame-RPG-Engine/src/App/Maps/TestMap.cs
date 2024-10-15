@@ -25,7 +25,7 @@ namespace App.Maps
             : base("test_map.txt", new CommonTileset(contentLoader), contentLoader)
         {
             PlayerStartPosition = GetMapTile(17, 20).Location;
-            Song = contentLoader.Load<Song>(SoundHelper.TEST_MAP);
+            Song = contentLoader.Load<Song>(SoundHelper.Songs.TEST_MAP);
         }
 
         protected override List<EnhancedMapTile> LoadEnhancedMapTiles()
@@ -40,8 +40,8 @@ namespace App.Maps
         {
             return new Dictionary<string, bool>()
             {
-                { "hasLostBall", false },
-                { "hasTalkedToWalrus", false },
+                { "hasLostBall", true },
+                { "hasTalkedToWalrus", true },
                 { "hasTalkedToDinosaur", false },
                 { "hasFoundBall", false },
             };

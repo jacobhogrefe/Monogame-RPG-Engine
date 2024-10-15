@@ -42,7 +42,7 @@ namespace App.Scripts
                         .AddText("Now, if you'll excuse me, I have to go.")
                     )
                     
-                    .AddScriptAction(new PlaySoundScriptAction(SoundHelper.WALKING_GRASS, contentLoader))
+                    .AddScriptAction(new PlaySoundScriptAction(SoundHelper.SoundEffect.WALKING_GRASS, contentLoader))
                     .AddScriptAction(new NPCStandScriptAction(Direction.RIGHT))
                     .AddScriptAction(new NPCWalkScriptAction(Direction.DOWN, 36, 2))
                     .AddScriptAction(new NPCWalkScriptAction(Direction.RIGHT, 196, 2))

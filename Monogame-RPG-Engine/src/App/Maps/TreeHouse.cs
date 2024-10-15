@@ -21,7 +21,7 @@ namespace App.Maps
         public TreeHouse(ContentLoader contentLoader)
             : base("homes/mountains.txt", new TreeHouseTileset(contentLoader), contentLoader) {
                 PlayerStartPosition = GetMapTile(10, 9).Location;
-                Song = contentLoader.Load<Song>(SoundHelper.STEAM_GARDENS);
+                Song = contentLoader.Load<Song>(SoundHelper.Songs.STEAM_GARDENS);
             }
         
         protected override void LoadScripts()
