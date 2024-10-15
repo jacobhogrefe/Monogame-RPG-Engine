@@ -40,8 +40,8 @@ namespace App.Maps
         {
             return new Dictionary<string, bool>()
             {
-                { "hasLostBall", true },
-                { "hasTalkedToWalrus", true },
+                { "hasLostBall", false },
+                { "hasTalkedToWalrus", false },
                 { "hasTalkedToDinosaur", false },
                 { "hasFoundBall", false },
             };
