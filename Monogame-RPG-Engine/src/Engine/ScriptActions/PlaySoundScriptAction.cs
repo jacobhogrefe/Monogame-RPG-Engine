@@ -28,12 +28,6 @@ namespace Engine.ScriptActions
             }
         }
 
-        public override void Setup()
-        {
-
-
-        }
-
         public override ScriptState Execute()
         {
             soundEffect.Play();
